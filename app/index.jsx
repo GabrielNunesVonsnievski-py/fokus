@@ -3,11 +3,13 @@ import { Image, StyleSheet, Text, View, Pressable } from "react-native";
 import { FokusButton } from "../components/FokusButton";
 import { ActionButton } from "../components/ActionButton";
 import { Timer } from "../components/Timer";
+import { IconPause } from "../components/Icons";
+import { IconPlay } from "../components/Icons";
 
 const modalidades = [
   {
     id: 'Corrida',
-    initialValue: 5,
+    initialValue: 5 * 60,
     image: require('./corrida.png'),
     display: 'Corrida'
   },
@@ -85,6 +87,7 @@ export default function Index() {
         <Timer totalSeconds={seconds}/>
           <FokusButton
             title={timerRunning ? 'Pausar' : 'Começar'}
+            icon={timerRunning ? <IconPause /> : <IconPlay />}
             onPress={toggleTimer}
           />
       </View>
