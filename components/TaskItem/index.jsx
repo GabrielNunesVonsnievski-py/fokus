@@ -32,7 +32,7 @@ const TaskItem = ({ completed, text , onToggleComplete, onPressEdit, onPressDele
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
-        backgroundColor: '#98A0A8',
+        backgroundColor: '#00000048',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 8,
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
         gap: 8
     },
     cardCompleted: {
-        backgroundColor: '#0F725C'
+        backgroundColor: '#0f7241ff'
     },
     text: {
         flex: 1,
-        color: '#021123',
+        color: '#ffffffff',
         fontSize: 18,
         fontWeight: 'bold'
     }
