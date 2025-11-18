@@ -59,6 +59,13 @@ export default function Layout() {
                             title: ''
                         }}
                     />
+                    <Drawer.Screen
+                        name='edit-task/[id]'
+                        options={{
+                            drawerItemStyle: {display: 'none'},
+                            title: ''
+                        }}
+                    />
                 </Drawer>
             </GestureHandlerRootView>
         </TasksProvider>
