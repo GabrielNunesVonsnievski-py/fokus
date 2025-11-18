@@ -25,7 +25,7 @@ export default function Tasks() {
                         />}
                         keyExtractor={item => item.id}
                         ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
-                        ListHeaderComponent={<Text style={styles.text}>Lista de tarefas:</Text>}
+                        ListHeaderComponent={<Text style={styles.text}>LISTA DE TAREFAS:</Text>}
                         ListFooterComponent={<View style={{ marginTop: 16 }}>
                             <FokusButton
                                 title="Adicionar nova tarefa"
@@ -56,7 +56,10 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: '#FFF',
         fontSize: 26,
-        marginBottom: 16
+        marginBottom: 16,
+        fontWeight: 'bold',
+        fontStyle: 'italic',
+        fontFamily: 'monospace'
     },
     inner: {
         gap: 8

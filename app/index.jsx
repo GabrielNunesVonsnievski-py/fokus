@@ -43,10 +43,13 @@ const styles = StyleSheet.create({
     color: '#FFF',
     textAlign: 'center',
     fontSize: 26,
-    margin: 50
+    margin: 50,
+    fontFamily: 'monospace'
   },
   bold: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    fontFamily: 'monospace'
   },
   footer: {
     width: '80%'
