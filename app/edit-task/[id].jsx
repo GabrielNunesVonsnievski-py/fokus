@@ -20,6 +20,7 @@ export default function EditTask () {
 
                     </Text>
                     <TextInput
+                        placeholder="Digite aqui!"
                         style={styles.input}
                         numberOfLines={10}
                         multiline={true}
@@ -29,8 +30,8 @@ export default function EditTask () {
                     <View style={styles.actions}>
                         <Pressable style={styles.button}>
                             <IconSave />
-                            <Text>
-                                Salvar
+                            <Text style={styles.salvar}>
+                                SALVAR
                             </Text>
                         </Pressable>
                     </View>
@@ -50,19 +51,18 @@ const styles = StyleSheet.create({
     text: {
         color: '#FFF',
         textAlign: 'center',
-        fontSize: 26
+        fontSize: 26,
+        fontWeight: 'bold',
+        fontFamily: 'monospace'
     },
     inner: {
-        backgroundColor: '#98A0A8',
+        backgroundColor: '#14448080',
         width: '90%',
-        borderRadius: 8,
+        borderRadius: 12,
         padding: 16,
         gap: 32
     },
-    label: {
-        fontWeight: 600,
-        fontSize: 18
-    },
+
     input: {
         backgroundColor: '#FFF',
         padding: 16,
@@ -72,10 +72,17 @@ const styles = StyleSheet.create({
     button: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 4
+        gap: 4,
+        backgroundColor: '#144480',
+        padding: 12,
+        borderRadius: 8,
+        alignItems: 'center'
     },
     actions: {
         flexDirection: 'row',
         justifyContent: 'flex-end'
+    },
+    salvar:{
+        color: '#FFF',
     }
 })
