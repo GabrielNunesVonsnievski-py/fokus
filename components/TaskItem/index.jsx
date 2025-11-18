@@ -18,10 +18,10 @@ const TaskItem = ({ completed, text , onToggleComplete, onPressEdit, onPressDele
             <Text style={styles.text}>
                 {text}
             </Text>
-            <Pressable onPress={onPressEdit}>
+            <Pressable onPress={onPressEdit} style={styles.edit}>
                 <IconPencil/>
             </Pressable>
-            <Pressable onPress={onPressDelete}>
+            <Pressable onPress={onPressDelete} style={styles.delete}>
                 <IconTrash/>
             </Pressable>
         </View>
@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
         color: '#ffffffff',
         fontSize: 18,
         fontWeight: 'bold'
+    },
+    edit: {
+        margin: 10
+    },
+    delete:{
+        margin: 10
     }
 })
 
