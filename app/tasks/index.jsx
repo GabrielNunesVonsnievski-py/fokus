@@ -7,7 +7,7 @@ import useTaskContext from "../../components/context/useTaskContext";
 
 export default function Tasks() {
 
-    const { tasks } = useTaskContext()
+    const { tasks , deleteTask } = useTaskContext()
 
     return (
         <View style={styles.container}>
@@ -28,7 +28,7 @@ export default function Tasks() {
                         renderItem={({ item }) => <TaskItem
                             completed={item.completed}
                             text={item.description}
-                            key={item.id}
+                            onPressDelete={() => deleteTask(item.id)}
                         />}
                         keyExtractor={item => item.id}
                         ItemSeparatorComponent={() => <View style={{ height: 8 }} />}

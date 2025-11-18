@@ -20,7 +20,7 @@ export function TasksProvider({ children }) {
         })
     }
 
-    const toggleTaskCompleted = () => {
+    const toggleTaskCompleted = (id) => {
         setTasks(oldState => {
             return oldState.map(t => {
                 if(t.id == id){
@@ -31,7 +31,7 @@ export function TasksProvider({ children }) {
         })
     }
 
-    const deleteTask = () => {
+    const deleteTask = (id) => {
         setTasks(oldState => {
             return oldState.filter(t => t.id != id)
         })
