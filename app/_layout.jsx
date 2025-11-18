@@ -3,6 +3,7 @@ import { Drawer } from 'expo-router/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from "expo-router";
 import { TasksProvider } from '../components/context/TaskProvider';
+import { IconList, IconClock } from '../components/Icons';
 
 export default function Layout() {
     return (
@@ -49,20 +50,22 @@ export default function Layout() {
                         name='hit'
                         options={{
                             drawerLabel: 'Timer',
-                            title: 'Timer'
+                            title: 'Timer',
+                            drawerIcon: () => (<IconClock/>)
                         }}
                     />
                     <Drawer.Screen
                         name='tasks/index'
                         options={{
                             drawerLabel: 'Lista De Tarefas',
-                            title: ''
+                            title: '',
+                            drawerIcon: () => (<IconList/>)
                         }}
                     />
                     <Drawer.Screen
                         name='edit-task/[id]'
                         options={{
-                            drawerItemStyle: {display: 'none'},
+                            drawerItemStyle: { display: 'none' },
                             title: ''
                         }}
                     />
