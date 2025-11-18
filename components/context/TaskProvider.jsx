@@ -1,16 +1,47 @@
-import { useState } from "react";
-import { createContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState, createContext } from "react";
 
 export const TaskContext = createContext()
+
+const TASKS_STORAGE_KEY = 'fokus-tasks'
 
 export function TasksProvider({ children }) {
 
     const [tasks, setTasks] = useState([])
+    const [isLoaded, setIsloaded] = useState(false)
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const jsonValue = await AsyncStorage.getItem(TASKS_STORAGE_KEY)
+                const loadedData = jsonValue != null ? JSON.parse(jsonValue) : []
+                setTasks(loadedData)
+                setIsloaded(true)
+            } catch (e) {
+                //error reading value
+            }
+        }
+        getData()
+    }, [])
+
+    useEffect(() => {
+        const storeData = async (value) => {
+            try {
+                const jsonValue = JSON.stringify(value);
+                await AsyncStorage.setItem(TASKS_STORAGE_KEY, jsonValue)
+            } catch (e) {
+                //saving error
+            }
+        }
+        if (isLoaded) {
+            storeData(tasks)
+        }
+    }, [tasks])
 
     const addTask = (description) => {
         console.log('tarefa vai ser adicionada')
         setTasks(oldState => {
-            return[
+            return [
                 ...oldState,
                 {
                     description,
@@ -23,7 +54,7 @@ export function TasksProvider({ children }) {
     const toggleTaskCompleted = (id) => {
         setTasks(oldState => {
             return oldState.map(t => {
-                if(t.id == id){
+                if (t.id == id) {
                     t.completed = !t.completed
                 }
                 return t
@@ -46,7 +77,7 @@ export function TasksProvider({ children }) {
             toggleTaskCompleted,
             deleteTask
         }}>
-            { children }
+            {children}
         </TaskContext.Provider>
     )
 }
