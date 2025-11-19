@@ -7,7 +7,7 @@ import useTaskContext from "../../components/context/useTaskContext";
 
 export default function Tasks() {
 
-    const { tasks , deleteTask, toggleTaskCompleted } = useTaskContext()
+    const { tasks, deleteTask, toggleTaskCompleted } = useTaskContext()
 
     return (
         <View style={styles.container}>
@@ -15,13 +15,18 @@ export default function Tasks() {
 
                 <View style={styles.inner}>
                     <FlatList
+                        ListEmptyComponent={
+                            <Text style={styles.emptyMsg}>
+                                Ainda Não há tarefas na sua lista, que tal adicionar?
+                            </Text>
+                        }
                         data={tasks}
                         renderItem={({ item }) => <TaskItem
                             completed={item.completed}
                             text={item.description}
                             onPressDelete={() => deleteTask(item.id)}
                             onToggleComplete={() => toggleTaskCompleted(item.id)}
-                            onPressEdit={() =>  router.navigate(`/edit-task/${item.id}`)}
+                            onPressEdit={() => router.navigate(`/edit-task/${item.id}`)}
                         />}
                         keyExtractor={item => item.id}
                         ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
@@ -60,6 +65,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontStyle: 'italic',
         fontFamily: 'monospace'
+    },
+    emptyMsg: {
+        color: '#98A0A8',
+        fontSize: 18,
+        textAlign: 'center',
+        marginTop: 40,
+        marginBottom: 24
     },
     inner: {
         gap: 8
