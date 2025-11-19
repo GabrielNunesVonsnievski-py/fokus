@@ -34,16 +34,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: '#021123',
-    gap: 40
+    gap: 60
   },
   inner: {
-    gap: 2,
+    gap: 10,
   },
   title: {
     color: '#FFF',
     textAlign: 'center',
     fontSize: 26,
-    margin: 50,
+    margin: 20,
     fontFamily: 'monospace'
   },
   bold: {
