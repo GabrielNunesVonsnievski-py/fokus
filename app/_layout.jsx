@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from "expo-router";
 import { TasksProvider } from '../components/context/TaskProvider';
 import { IconList, IconClock } from '../components/Icons';
+import { BackButtonDrawer } from '../components/BackButtonDrawer';
 
 export default function Layout() {
     return (
@@ -35,15 +36,7 @@ export default function Layout() {
                         options={{
                             drawerItemStyle: { display: 'none' },
                             title: '',
-                            headerLeft: () => {
-                                return <Ionicons
-                                    name='arrow-back'
-                                    size={24}
-                                    color='#FFF'
-                                    style={{ marginLeft: 16 }}
-                                    onPress={() => router.navigate('/tasks')}
-                                />
-                            }
+                            headerLeft: () => {return <BackButtonDrawer backHref="/tasks"/>}
                         }}
                     />
                     <Drawer.Screen
@@ -51,7 +44,7 @@ export default function Layout() {
                         options={{
                             drawerLabel: 'Timer',
                             title: 'Timer',
-                            drawerIcon: () => (<IconClock/>)
+                            drawerIcon: () => (<IconClock />)
                         }}
                     />
                     <Drawer.Screen
@@ -59,14 +52,15 @@ export default function Layout() {
                         options={{
                             drawerLabel: 'Lista De Tarefas',
                             title: '',
-                            drawerIcon: () => (<IconList/>)
+                            drawerIcon: () => (<IconList />)
                         }}
                     />
                     <Drawer.Screen
                         name='edit-task/[id]'
                         options={{
                             drawerItemStyle: { display: 'none' },
-                            title: ''
+                            title: '',
+                            headerLeft: () => {return <BackButtonDrawer backHref="/tasks"/>}
                         }}
                     />
                 </Drawer>
