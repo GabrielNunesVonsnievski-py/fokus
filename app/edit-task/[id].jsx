@@ -1,88 +1,31 @@
-import { useLocalSearchParams } from "expo-router";
-import { Keyboard } from "react-native";
-import { Platform, Pressable } from "react-native";
-import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView } from "react-native";
-import { IconSave } from "../../components/Icons";
+import { Text, View } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
+import useTaskContext from "../../components/context/useTaskContext";
+import FormTask from "../../components/FormTask";
 
-export default function EditTask () {
+export default function EditTask() {
 
     const { id } = useLocalSearchParams()
+    const { tasks, updateTask } = useTaskContext()
+
+    const task = tasks.find(t => t.id == id)
+
+    const submitTask = (description) => {
+        updateTask(id, description)
+        router.navigate('/tasks')
+    }
+
+    if (!task) {
+        return (
+            <View>
+                <Text>
+                    Nâo foi encontrada uma tarefas com o id: {id}
+                </Text>
+            </View>
+        )
+    }
 
     return (
-        <KeyboardAvoidingView
-            style={styles.container}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        >
-            <Pressable onPress={Keyboard.dismiss}>
-                <View style={styles.inner}>
-                    <Text style={styles.text}>
-                        Editar tarefa numero: {id}
-
-                    </Text>
-                    <TextInput
-                        placeholder="Digite aqui!"
-                        style={styles.input}
-                        numberOfLines={10}
-                        multiline={true}
-                        // value={description}
-                        // onChangeText={setDescription}
-                    />
-                    <View style={styles.actions}>
-                        <Pressable style={styles.button}>
-                            <IconSave />
-                            <Text style={styles.salvar}>
-                                SALVAR
-                            </Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Pressable>
-        </KeyboardAvoidingView>
+        <FormTask onFormSubmit={submitTask} defaultValue={task.description} />
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#021123',
-        gap: 16,
-        alignItems: 'center'
-    },
-    text: {
-        color: '#FFF',
-        textAlign: 'center',
-        fontSize: 26,
-        fontWeight: 'bold',
-        fontFamily: 'monospace'
-    },
-    inner: {
-        backgroundColor: '#14448080',
-        width: '90%',
-        borderRadius: 12,
-        padding: 16,
-        gap: 32
-    },
-
-    input: {
-        backgroundColor: '#FFF',
-        padding: 16,
-        borderRadius: 8,
-        height: 100
-    },
-    button: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 4,
-        backgroundColor: '#14448080',
-        padding: 12,
-        borderRadius: 8,
-        alignItems: 'center'
-    },
-    actions: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    salvar:{
-        color: '#FFF',
-    }
-})

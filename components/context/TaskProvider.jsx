@@ -68,12 +68,16 @@ export function TasksProvider({ children }) {
         })
     }
 
-    const updateTask = () => {
-        setTasks(oldState =>
-        oldState.map(task => (task.id === id ? { ...task, description } : task)),
-        )
+    const updateTask = (id, description) => {
+        setTasks(oldState => {
+            return oldState.map(t => {
+                if (t.id == id) {
+                    t.description = description
+                }
+                return t
+            })
+        })
     }
-
 
 
     return (

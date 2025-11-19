@@ -2,9 +2,9 @@ import { Text, View, TextInput, Pressable, StyleSheet, KeyboardAvoidingView, Pla
 import { IconSave } from "../../components/Icons";
 import { useState } from "react";
 
-export default function FormTask({ onFormSubmit }) {
+export default function FormTask({ onFormSubmit, defaultValue = '' }) {
 
-    const [description, setDescription] = useState()
+    const [description, setDescription] = useState(defaultValue)
 
     const submitTask = () => {
         if (!description) {
@@ -22,7 +22,7 @@ export default function FormTask({ onFormSubmit }) {
             <Pressable onPress={Keyboard.dismiss}>
                 <View style={styles.inner}>
                     <Text style={styles.text}>
-                        Adicionar uma Tarefa
+                        {defaultValue ? 'Editar' : 'Adicionar'} uma Tarefa:
                     </Text>
                     <TextInput
                         placeholder="Digite Aqui!"
